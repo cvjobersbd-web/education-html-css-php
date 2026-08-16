@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Escul</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #14b8a6;
+            --orange: #f2760f;
+            --dark: #1b2430;
+            --gray-text: #5b6472;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* ----- Navbar (same as index) ----- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .navbar-wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 24px 0;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #ffffff;
+            border-radius: 60px;
+            padding: 14px 20px 14px 24px;
+            box-shadow: 0 12px 40px -14px rgba(20, 30, 50, 0.15);
+            transition: box-shadow 0.3s ease;
+        }
+        .site-header.scrolled .navbar {
+            box-shadow: 0 16px 44px -14px rgba(20, 30, 50, 0.24);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.15;
+        }
+        .logo-text .name {
+            font-family: 'Baloo 2', sans-serif;
+            font-weight: 800;
+            font-size: 24px;
+            color: var(--dark);
+        }
+        .logo-text .tagline {
+            font-size: 11px;
+            color: var(--orange);
+            font-weight: 500;
+            letter-spacing: .2px;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 14.5px;
+            letter-spacing: .2px;
+            transition: color .2s ease;
+        }
+        .nav-links a:hover {
+            color: var(--teal);
+        }
+        .nav-links a.active {
+            color: var(--teal);
+        }
+        .nav-login {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--teal);
+            color: #fff !important;
+            font-weight: 700 !important;
+            font-size: 14px !important;
+            padding: 12px 26px;
+            border-radius: 40px;
+            text-decoration: none;
+            transition: all .25s ease;
+        }
+        .nav-login:hover {
+            background: #0d9488;
+            transform: translateY(-2px);
+            color: #fff !important;
+        }
+        .nav-login svg {
+            width: 15px;
+            height: 15px;
+        }
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 6px;
+            background: none;
+            border: none;
+        }
+        .menu-toggle span {
+            width: 24px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        @media (max-width: 992px) {
+            .navbar-wrap {
+                padding: 16px 20px 0;
+            }
+            .navbar {
+                border-radius: 24px;
+                padding: 14px 20px;
+                flex-wrap: wrap;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .nav-links {
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height .35s ease;
+            }
+            .nav-links.open {
+                max-height: 400px;
+                margin-top: 18px;
+                padding-top: 14px;
+                border-top: 1px solid #eef1f4;
+            }
+            .nav-login {
+                margin-top: 4px;
+            }
+        }
+
+        /* ----- About Page Specific ----- */
+        .about-hero {
+            max-width: 1400px;
+            margin: 60px auto 0;
+            padding: 0 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 70px;
+        }
+
+        /* ----- Image collage (left side) ----- */
+        .about-collage {
+            position: relative;
+            width: 100%;
+            max-width: 620px;
+            aspect-ratio: 700 / 650;
+            flex-shrink: 0;
+        }
+        .about-collage .plus {
+            position: absolute;
+            color: var(--teal);
+            font-size: 26px;
+            font-weight: 700;
+            line-height: 1;
+            z-index: 1;
+        }
+        .about-collage .plus.p1 { left: 47%; top: 3%; }
+        .about-collage .plus.p2 { left: 74.3%; top: 38.5%; }
+
+        .about-collage .shape-books {
+            position: absolute;
+            left: 0;
+            top: 66%;
+            width: 25%;
+            z-index: 0;
+        }
+        .about-collage .shape-books img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-collage .img-card {
+            position: absolute;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.25);
+            background: #fff;
+        }
+        .about-collage .img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .about-collage .img-library {
+            left: 0;
+            top: 10.7%;
+            width: 31.4%;
+            height: 32.3%;
+            z-index: 2;
+        }
+        .about-collage .img-main {
+            left: 21%;
+            top: 32.3%;
+            width: 49%;
+            height: 55.4%;
+            z-index: 3;
+            border: 6px solid #fff;
+            border-radius: 20px;
+        }
+        .about-collage .img-students {
+            left: 57%;
+            top: 61.5%;
+            width: 39%;
+            height: 35.4%;
+            z-index: 4;
+            border: 6px solid #fff;
+            border-radius: 16px;
+        }
+
+        .about-collage .badge-circle {
+            position: absolute;
+            left: 35.7%;
+            top: 0;
+            width: 33%;
+            height: 35.4%;
+            z-index: 5;
+        }
+        .about-collage .badge-circle svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .about-collage .badge-circle .badge-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .about-collage .badge-circle .badge-text .num {
+            font-family: 'Baloo 2', sans-serif;
+            font-weight: 800;
+            font-size: 26px;
+            color: var(--teal);
+            line-height: 1.1;
+        }
+        .about-collage .badge-circle .badge-text .label {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--dark);
+            white-space: nowrap;
+        }
+
+        /* ----- Text content (right side) ----- */
+        .about-hero-text {
+            flex: 1;
+        }
+        .about-hero-text .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--teal);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: .5px;
+            text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        .about-hero-text .eyebrow::before {
+            content: "";
+            width: 26px;
+            height: 2px;
+            background: var(--teal);
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        .about-hero-text h1 {
+            font-family: 'Baloo 2', sans-serif;
+            font-weight: 800;
+            font-size: 48px;
+            line-height: 1.15;
+            color: var(--dark);
+            margin-bottom: 22px;
+        }
+        .about-hero-text h1 span {
+            color: var(--teal);
+        }
+        .about-hero-text .desc {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--gray-text);
+            max-width: 540px;
+            margin-bottom: 30px;
+        }
+        .about-hero-text .check-list {
+            list-style: none;
+            margin: 0 0 34px;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .about-hero-text .check-list li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 15.5px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        .about-hero-text .check-list .check-ico {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: #e6f8f5;
+            color: var(--teal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .about-hero-text .check-list .check-ico svg {
+            width: 13px;
+            height: 13px;
+        }
+        .about-hero-bottom {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            flex-wrap: wrap;
+        }
+        .students-mini {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .students-mini .avatars {
+            display: flex;
+        }
+        .students-mini .avatars img {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            object-fit: cover;
+            margin-left: -10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,.15);
+        }
+        .students-mini .avatars img:first-child {
+            margin-left: 0;
+        }
+        .students-mini span {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        @media (max-width: 1100px) {
+            .about-hero {
+                flex-direction: column;
+                padding: 0 32px;
+                text-align: center;
+            }
+            .about-hero-text .desc {
+                margin: 0 auto 30px;
+            }
+            .about-hero-text .eyebrow,
+            .about-hero-text .check-list li,
+            .about-hero-bottom {
+                justify-content: center;
+            }
+            .about-collage {
+                max-width: 480px;
+                margin: 0 auto;
+            }
+        }
+        @media (max-width: 640px) {
+            .about-hero-text h1 {
+                font-size: 32px;
+            }
+            .about-collage {
+                max-width: 360px;
+            }
+        }
+
+        /* ----- What We Do (3 steps) ----- */
+        .whatwedo {
+            background: linear-gradient(120deg, #e9f7f2 0%, #eef8ee 55%, #f6f9e9 100%);
+            margin-top: 90px;
+            padding: 90px 80px;
+        }
+        .whatwedo-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .whatwedo-head {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        .whatwedo-head .eyebrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: .3px;
+            margin-bottom: 18px;
+        }
+        .whatwedo-head .eyebrow .line {
+            width: 26px;
+            height: 2px;
+            background: var(--teal);
+            display: inline-block;
+        }
+        .whatwedo-head .eyebrow svg {
+            width: 18px;
+            height: 18px;
+            color: var(--teal);
+        }
+        .whatwedo-head h2 {
+            font-family: 'Baloo 2', sans-serif;
+            font-weight: 800;
+            font-size: 44px;
+            line-height: 1.2;
+            color: var(--dark);
+            margin-bottom: 18px;
+        }
+        .whatwedo-head h2 span {
+            color: var(--teal);
+        }
+        .whatwedo-head p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--gray-text);
+        }
+        .whatwedo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .whatwedo-card {
+            position: relative;
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 50px 36px 44px;
+            text-align: center;
+            box-shadow: 0 20px 48px -24px rgba(20, 30, 50, 0.18);
+        }
+        .whatwedo-card .step-num {
+            position: absolute;
+            top: -18px;
+            right: -18px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--dark);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .whatwedo-card .icon-circle {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 26px;
+        }
+        .whatwedo-card .icon-circle svg {
+            width: 34px;
+            height: 34px;
+            color: #fff;
+        }
+        .whatwedo-card.card-1 .icon-circle { background: var(--teal); }
+        .whatwedo-card.card-2 .icon-circle { background: var(--orange); }
+        .whatwedo-card.card-3 .icon-circle { background: #9b3ff0; }
+        .whatwedo-card h3 {
+            font-family: 'Baloo 2', sans-serif;
+            font-weight: 700;
+            font-size: 21px;
+            color: var(--dark);
+            margin-bottom: 16px;
+        }
+        .whatwedo-card p {
+            font-size: 15px;
+            line-height: 1.85;
+            color: var(--gray-text);
+        }
+
+        @media (max-width: 992px) {
+            .whatwedo {
+                padding: 70px 32px;
+            }
+            .whatwedo-grid {
+                grid-template-columns: 1fr;
+                gap: 44px 0;
+            }
+            .whatwedo-head h2 {
+                font-size: 32px;
+            }
+        }
+
+        /* ----- Popular Courses (CTA cards) ----- */
+        .courses-cta {
+            max-width: 1400px;
+            margin: 90px auto 0;
+            padding: 0 80px;
+        }
+        .courses-cta-head {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 44px;
+        }
+        .courses-cta-head .badge-pill {
+            display: inline-block;
+            background: #e6f8f5;
+            color: var(--teal);
+            font-weight: 700;
+            font-size: 12.5px;
+            letter-spacing: .4px;
+            padding: 8px 20px;
+            border-radius: 40px;
+            margin-bottom: 18px;
+        }
+        .courses-cta-head h2 {
+            font-family: 'Baloo 2', sans-serif;
+            font-weight: 800;
+            font-size: 38px;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+        .courses-cta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .cta-card {
+            position: relative;
+            border-radius: 22px;
+            overflow: hidden;
+            min-height: 340px;
+            display: flex;
+            align-items: flex-end;
+            padding: 40px;
+        }
+        .cta-card.green { background: #2fac82; }
+        .cta-card.yellow { background: #f2ab1d; }
+        .cta-card .cta-img {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 100%;
+            max-height: 340px;
+            width: auto;
+            object-fit: contain;
+            object-position: bottom right;
+        }
+        .cta-card .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 60%;
+        }
+        .cta-card .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,255,255,.22);
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: .3px;
+            padding: 7px 16px;
+            border-radius: 40px;
+            margin-bottom: 18px;
+        }
+        .cta-card h3 {
+            font-family: 'Baloo 2', sans-serif;
+            font-weight: 800;
+            font-size: 28px;
+            line-height: 1.25;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+        .cta-card .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 22px;
+        }
+        .cta-card .enroll-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,.22);
+            color: #fff;
+            font-weight: 700;
+            font-size: 13.5px;
+            letter-spacing: .3px;
+            text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 40px;
+            transition: background .25s ease;
+        }
+        .cta-card .enroll-btn:hover {
+            background: rgba(255,255,255,.34);
+        }
+        .cta-card .enroll-btn svg {
+            width: 15px;
+            height: 15px;
+        }
+
+        @media (max-width: 992px) {
+            .courses-cta {
+                padding: 0 32px;
+            }
+            .courses-cta-grid {
+                grid-template-columns: 1fr;
+            }
+            .courses-cta-head h2 {
+                font-size: 28px;
+            }
+            .cta-card .cta-content {
+                max-width: 70%;
+            }
+        }
+        @media (max-width: 560px) {
+            .cta-card {
+                min-height: 280px;
+                padding: 28px;
+            }
+            .cta-card .cta-content {
+                max-width: 100%;
+            }
+            .cta-card .cta-img {
+                opacity: .25;
+            }
+        }
+
+        /* ----- Testimonials ----- */
+        .testimonials {
+            background: linear-gradient(120deg, #e9f7f2 0%, #eef8ee 55%, #eafaf3 100%);
+            margin-top: 90px;
+            padding: 90px 80px;
+        }
+        .testimonials-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .testimonials-head {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+        .testimonials-head .badge-pill {
+            display: inline-block;
+            background: #ffffff;
+            color: var(--teal);
+            font-weight: 700;
+            font-size: 12.5px;
+            letter-spacing: .4px;
+            padding: 8px 22px;
+            border-radius: 40px;
+            margin-bottom: 18px;
+        }
+        .testimonials-head h2 {
+            font-family: 'Baloo 2', sans-serif;
+            font-weight: 800;
+            font-size: 40px;
+            color: var(--dark);
+            line-height: 1.2;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 36px 34px 30px;
+            text-align: center;
+            box-shadow: 0 20px 48px -26px rgba(20, 30, 50, 0.18);
+        }
+        .testimonial-card .stars {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        .testimonial-card .stars svg {
+            width: 17px;
+            height: 17px;
+            color: #f5b400;
+        }
+        .testimonial-card .quote {
+            font-size: 15px;
+            line-height: 1.8;
+            color: var(--gray-text);
+            margin-bottom: 26px;
+        }
+        .testimonial-card .person {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        .testimonial-card .person img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .testimonial-card .person .info {
+            text-align: left;
+        }
+        .testimonial-card .person .name {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--dark);
+        }
+        .testimonial-card .person .role {
+            font-size: 13.5px;
+            color: var(--gray-text);
+        }
+
+        @media (max-width: 992px) {
+            .testimonials {
+                padding: 70px 32px;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 26px;
+            }
+            .testimonials-head h2 {
+                font-size: 30px;
+            }
+        }
+
+        /* ----- Footer (same as index) ----- */
+        .site-footer {
+            background: linear-gradient(120deg, #fdf9ec 0%, #eafaf3 55%, #ddf6ec 100%);
+            padding: 70px 80px 0;
+            margin-top: 60px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+        .footer-brand .logo {
+            margin-bottom: 14px;
+        }
+        .footer-brand p {
+            font-size: 14.5px;
+            line-height: 1.7;
+            color: var(--gray-text);
+            max-width: 320px;
+            margin-bottom: 22px;
+        }
+        .footer-brand h5 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 14px;
+        }
+        .store-btns {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .store-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 13px;
+            color: #fff;
+        }
+        .store-btn.apple {
+            background: var(--teal);
+        }
+        .store-btn.google {
+            background: var(--orange);
+        }
+        .store-btn .store-label {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+            text-align: left;
+        }
+        .store-btn .store-label small {
+            font-size: 10px;
+            font-weight: 400;
+            opacity: .9;
+        }
+        .footer-column h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 22px;
+        }
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-column ul li {
+            margin-bottom: 14px;
+        }
+        .footer-column ul a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--gray-text);
+            font-size: 14.5px;
+            transition: color .2s ease;
+        }
+        .footer-column ul a:hover {
+            color: var(--teal);
+        }
+        .footer-column ul a svg {
+            flex-shrink: 0;
+            color: var(--teal);
+        }
+        .footer-contact h4 {
+            margin-bottom: 22px;
+        }
+        .footer-contact .label {
+            font-size: 13.5px;
+            color: var(--gray-text);
+            margin-bottom: 4px;
+        }
+        .footer-contact .value {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+        .footer-social a {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid #d7ddd9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark);
+            text-decoration: none;
+            transition: all .2s ease;
+        }
+        .footer-social a:hover {
+            background: var(--teal);
+            border-color: var(--teal);
+            color: #fff;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(27, 36, 48, 0.08);
+            padding: 24px 0;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            font-size: 13.5px;
+            color: var(--gray-text);
+        }
+        .footer-bottom a {
+            color: var(--gray-text);
+            text-decoration: none;
+        }
+        .footer-bottom a:hover {
+            color: var(--teal);
+        }
+        .footer-bottom .dot {
+            color: #c2c9c5;
+        }
+
+        @media (max-width: 1100px) {
+            .site-footer {
+                padding: 50px 32px 0;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 640px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .store-btns {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <header class="site-header" id="siteHeader">
+        <div class="navbar-wrap">
+            <nav class="navbar" role="navigation" aria-label="Main Navigation">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 12C19 8 10 8 6 10V36C10 34 19 34 24 38V12Z" fill="var(--teal)"/>
+                        <path d="M24 12C29 8 38 8 42 10V36C38 34 29 34 24 38V12Z" fill="var(--orange)"/>
+                    </svg>
+                    <span class="logo-text">
+                        <span class="name">Escul</span>
+                        <span class="tagline">Online Course &amp; Edu</span>
+                    </span>
+                </a>
+
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <ul class="nav-links" id="navLinks" role="menubar">
+                    <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                    <li role="none"><a href="about.html" role="menuitem" class="active">About Us</a></li>
+                    <li role="none"><a href="courses.html" role="menuitem">Courses</a></li>
+                    <li role="none"><a href="faq.html" role="menuitem">FAQ</a></li>
+                    <li role="none"><a href="my-class.html" role="menuitem">My Class</a></li>
+                    <li role="none"><a href="helpdesk.html" role="menuitem">Helpdesk</a></li>
+                    <li role="none">
+                        <a href="login.html" role="menuitem" class="nav-login">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                            Login
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <script>
+        // Navbar scroll & toggle (same as index)
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('siteHeader');
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            const toggle = document.getElementById('menuToggle');
+            const navLinks = document.getElementById('navLinks');
+            toggle.addEventListener('click', function() {
+                const isOpen = navLinks.classList.toggle('open');
+                toggle.classList.toggle('active');
+                toggle.setAttribute('aria-expanded', isOpen);
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('open');
+                    toggle.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        });
+    </script>
+
+    <!-- ===== ABOUT CONTENT ===== -->
+    <section class="about-hero">
+        <div class="about-collage">
+            <span class="plus p1">+</span>
+            <span class="plus p2">+</span>
+
+            <div class="shape-books">
+                <img src="https://i.ibb.co.com/Ng6Ykb56/about-shape1-1-1.png" alt="">
+            </div>
+
+            <div class="img-card img-library">
+                <img src="https://i.ibb.co.com/XfRRY7ZW/download.png" alt="Students studying in library">
+            </div>
+
+            <div class="badge-circle">
+                <svg viewBox="0 0 230 230" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <path id="badgeCirclePath" d="M 115,115 m -95,0 a95,95 0 1,1 190,0 a95,95 0 1,1 -190,0" />
+                    </defs>
+                    <circle cx="115" cy="115" r="112" fill="#f4faf9" />
+                    <circle cx="115" cy="115" r="83" fill="#ffffff" stroke="#e5f4f1" stroke-width="1" />
+                    <g>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 115 115" to="360 115 115" dur="18s" repeatCount="indefinite" />
+                        <text font-size="9" font-weight="700" fill="#8a95a3" letter-spacing="2.5">
+                            <textPath href="#badgeCirclePath" startOffset="0%">OVERVIEW OF STUDENT &#8226; TESTIMONIALS &#8226; CAMPUS &#8226;</textPath>
+                        </text>
+                    </g>
+                </svg>
+                <div class="badge-text">
+                    <div class="num">50K</div>
+                    <div class="label">Active Students</div>
+                </div>
+            </div>
+
+            <div class="img-card img-main">
+                <img src="https://i.ibb.co.com/LK19pss/download-1.png" alt="Graduating students celebrating">
+            </div>
+
+            <div class="img-card img-students">
+                <img src="https://i.ibb.co.com/1GXYk61s/download-2.png" alt="Students reading together">
+            </div>
+        </div>
+
+        <div class="about-hero-text">
+            <p class="eyebrow">About Our University</p>
+            <h1>Welcome To <span>Escul</span> University.</h1>
+            <p class="desc">Collaboratively simplify user friendly networks after principle centered coordinate effective methods of empowerment distributed niche markets pursue market positioning web-readiness after resource sucking applications.</p>
+            <ul class="check-list">
+                <li><span class="check-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Get access to 4,000+ of our top courses</li>
+                <li><span class="check-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Popular topics to learn now</li>
+                <li><span class="check-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>Find the right instructor for you</li>
+            </ul>
+            <div class="about-hero-bottom">
+                <a href="#" class="cta" style="display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:#fff;font-weight:700;font-size:14px;text-decoration:none;padding:18px 34px;border-radius:40px;box-shadow:0 14px 28px -10px rgba(20,184,166,.55);border:none;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;">Learn More <span style="transition:transform .25s ease;">→</span></a>
+                <div class="students-mini">
+                    <div class="avatars">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="">
+                    </div>
+                    <span>2.5k+ students</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WHAT WE DO ===== -->
+    <section class="whatwedo">
+        <div class="whatwedo-inner">
+            <div class="whatwedo-head">
+                <p class="eyebrow">
+                    <span class="line"></span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                    What we do
+                    <span class="line"></span>
+                </p>
+                <h2>Your Path To <span>Success</span> Starts Here</h2>
+                <p>We provide comprehensive digital education solutions designed to help you achieve your goals.</p>
+            </div>
+
+            <div class="whatwedo-grid">
+                <div class="whatwedo-card card-1">
+                    <span class="step-num">1</span>
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/><circle cx="9" cy="10" r="1.5" fill="currentColor" stroke="none"/><path d="M13 9h5M13 12h5"/></svg>
+                    </div>
+                    <h3>Learn From Anywhere</h3>
+                    <p>It uses digital technology to deliver high-quality courses, interactive lessons, and expert-led training across a wide range of subjects.</p>
+                </div>
+
+                <div class="whatwedo-card card-2">
+                    <span class="step-num">2</span>
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.5 2H19a1 1 0 0 1 1 1v3.5L22 12l-2 3.5V19a1 1 0 0 1-1 1h-3.5L12 22l-3.5-2H5a1 1 0 0 1-1-1v-3.5L2 12l2-3.5V5a1 1 0 0 1 1-1h3.5z"/><circle cx="12" cy="10" r="2.5"/><path d="M8 17c0-2.2 1.8-4 4-4s4 1.8 4 4"/></svg>
+                    </div>
+                    <h3>Expert Instructor</h3>
+                    <p>It uses digital technology to deliver high-quality courses, interactive lessons, and expert-led training across a wide range of subjects.</p>
+                </div>
+
+                <div class="whatwedo-card card-3">
+                    <span class="step-num">3</span>
+                    <div class="icon-circle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="12" rx="2"/><path d="M8 21h8M12 15v6"/><path d="M8 8h8M8 11h5"/></svg>
+                    </div>
+                    <h3>24/7 Live Support</h3>
+                    <p>It uses digital technology to deliver high-quality courses, interactive lessons, and expert-led training across a wide range of subjects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== POPULAR COURSES CTA ===== -->
+    <section class="courses-cta">
+        <div class="courses-cta-head">
+            <span class="badge-pill">POPULAR COURSES</span>
+            <h2>Start Your Learning Journey Today</h2>
+        </div>
+
+        <div class="courses-cta-grid">
+            <div class="cta-card green">
+                <img class="cta-img" src="https://i.ibb.co.com/46jF3Qz/cta-thumb2-2.png" alt="Web development instructor">
+                <div class="cta-content">
+                    <span class="tag">🔥 POPULAR</span>
+                    <h3>Web Development Bootcamp</h3>
+                    <div class="price">$49.99</div>
+                    <a href="#" class="enroll-btn">ENROLL NOW
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="cta-card yellow">
+                <img class="cta-img" src="https://i.ibb.co.com/HM1Rxjd/cta-thumb2-1.png" alt="Data science instructor">
+                <div class="cta-content">
+                    <span class="tag">⭐ NEW</span>
+                    <h3>Data Science Masterclass</h3>
+                    <div class="price">$59.99</div>
+                    <a href="#" class="enroll-btn">ENROLL NOW
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials">
+        <div class="testimonials-inner">
+            <div class="testimonials-head">
+                <span class="badge-pill">TESTIMONIALS</span>
+                <h2>What Our Students Say</h2>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                    </div>
+                    <p class="quote">"The courses here transformed my career. I went from zero to landing my dream job in just 6 months!"</p>
+                    <div class="person">
+                        <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Sarah Johnson">
+                        <div class="info">
+                            <div class="name">Sarah Johnson</div>
+                            <div class="role">Web Developer</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                    </div>
+                    <p class="quote">"Incredible instructors and hands-on projects. The support team is always there when you need help."</p>
+                    <div class="person">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                        <div class="info">
+                            <div class="name">Michael Chen</div>
+                            <div class="role">Data Analyst</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.8-6.2 3.8 1.6-7L2 9.2l7.1-.6z"/></svg>
+                    </div>
+                    <p class="quote">"I love the flexibility of learning at my own pace. The curriculum is well-structured and engaging."</p>
+                    <div class="person">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Rodriguez">
+                        <div class="info">
+                            <div class="name">Emily Rodriguez</div>
+                            <div class="role">UX Designer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M24 12C19 8 10 8 6 10V36C10 34 19 34 24 38V12Z" fill="var(--teal)"/>
+                        <path d="M24 12C29 8 38 8 42 10V36C38 34 29 34 24 38V12Z" fill="var(--orange)"/>
+                    </svg>
+                    <span class="logo-text">
+                        <span class="name">Escul</span>
+                        <span class="tagline">Online Course &amp; Edu</span>
+                    </span>
+                </a>
+                <p>University education is the foundation for shaping skilled, knowledgeable.</p>
+                <h5>Take Your Learning with You</h5>
+                <div class="store-btns">
+                    <a href="#" class="store-btn apple">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8.94-.07 1.84-.71 3.08-.81 2.16-.17 3.79 1.11 4.7 2.65-4.02 2.44-3.36 8.11.16 9.99-.66 1.34-1.32 2.34-2.02 2.34zM12.03 7.25c-.15-2.23 1.66-4.09 3.74-4.25.29 2.31-2.1 4.51-3.74 4.25z"/></svg>
+                        <span class="store-label"><small>Download On The</small>App Store</span>
+                    </a>
+                    <a href="#" class="store-btn google">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3l18 9-18 9V3z"/></svg>
+                        <span class="store-label"><small>Get It On</small>Play Store</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>About Us</a></li>
+                    <li><a href="contact.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Contact Us</a></li>
+                    <li><a href="courses.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Courses</a></li>
+                    <li><a href="dashboard.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Dashboard</a></li>
+                    <li><a href="account.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Escul My account</a></li>
+                    <li><a href="shop.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Escul Shop</a></li>
+                    <li><a href="register.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Student Registration</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="events.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Events</a></li>
+                    <li><a href="courses.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Courses</a></li>
+                    <li><a href="dashboard.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Dashboard</a></li>
+                    <li><a href="faq.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>FAQ</a></li>
+                    <li><a href="instructor-registration.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Instructor Registration</a></li>
+                    <li><a href="pricing.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Pricing Plan</a></li>
+                    <li><a href="terms.html"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>Teams &amp; Conditions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column footer-contact">
+                <h4>Get In Touch</h4>
+                <div class="label">Toll Free Customer Care</div>
+                <div class="value">+01 234 567 890</div>
+                <div class="label">Need live support?</div>
+                <div class="value">mailinfo@escul.com</div>
+                <h5 style="font-size:15px;font-weight:600;color:var(--dark);margin-bottom:12px;">Follow with Us:</h5>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.89h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg></a>
+                    <a href="#" aria-label="X"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-7.3L4 22H1l8.1-9.3L1 2h7.3l5.1 6.7L18.9 2zm-1.3 18h1.8L7.5 4h-1.9l12 16z"/></svg></a>
+                    <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                    <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8zM9.6 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg></a>
+                    <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>Copyright &copy; 2026 Escul, All rights reserved.</span>
+            <a href="#">Terms of service</a>
+            <span class="dot">&mdash;</span>
+            <a href="#">Privacy policy</a>
+            <span class="dot">&mdash;</span>
+            <a href="#">Cookies</a>
+        </div>
+    </footer>
+
+</body>
+</html>
