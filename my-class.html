@@ -780,6 +780,32 @@
                     toggle.setAttribute('aria-expanded', 'false');
                 });
             });
+
+            // Filter tabs functionality
+            document.querySelectorAll('.filter-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.textContent.trim().toLowerCase();
+                    const cards = document.querySelectorAll('.course-card');
+                    
+                    cards.forEach(card => {
+                        const status = card.querySelector('.status-badge')?.textContent.trim().toLowerCase() || '';
+                        if (filter === 'all (8)' || filter === 'all') {
+                            card.style.display = 'block';
+                        } else if (filter === 'in progress (6)' && status.includes('in progress')) {
+                            card.style.display = 'block';
+                        } else if (filter === 'completed (1)' && status.includes('completed')) {
+                            card.style.display = 'block';
+                        } else if (filter === 'not started (1)' && status.includes('not started')) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
         });
     </script>
 
@@ -861,7 +887,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Next: Advanced Prototyping Techniques
                     </div>
-                    <a href="#" class="cta-btn">
+                    <a href="course-player.html" class="cta-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Continue Learning
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -902,7 +928,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Next: State Management with Provider
                     </div>
-                    <a href="#" class="cta-btn">
+                    <a href="course-player.html" class="cta-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Continue Learning
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -983,7 +1009,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Next: Database Integration with MySQL
                     </div>
-                    <a href="#" class="cta-btn">
+                    <a href="course-player.html" class="cta-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Continue Learning
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -1023,7 +1049,7 @@
                     <div class="next-box notstarted">
                         📚 Not started yet. Start learning today!
                     </div>
-                    <a href="#" class="cta-btn">
+                    <a href="course-player.html" class="cta-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Start Learning
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -1064,7 +1090,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Next: Final Project Submission
                     </div>
-                    <a href="#" class="cta-btn">
+                    <a href="course-player.html" class="cta-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Continue Learning
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -1105,7 +1131,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Next: Advanced Grammar Rules
                     </div>
-                    <a href="#" class="cta-btn">
+                    <a href="course-player.html" class="cta-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Continue Learning
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -1146,7 +1172,7 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Next: Custom Post Types
                     </div>
-                    <a href="#" class="cta-btn">
+                    <a href="course-player.html" class="cta-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
                         Continue Learning
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
